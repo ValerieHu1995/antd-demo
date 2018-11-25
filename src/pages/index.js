@@ -10,7 +10,7 @@ class LoginForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.props.history.push({ pathname: '/main', state: { userType:values.userType } });
+        this.props.history.push({ pathname: '/main', state: { userName: values.userName, userType:values.userType } });
         console.log('Received values of radio: ', values);
       }
     });

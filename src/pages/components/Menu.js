@@ -25,25 +25,27 @@ const MyMenuItemAdmin = [
         icon:'plus-square'
       }
     ]
-  },{
-    name:'审批任务',
-    icon:'issues-close',
-    item:[
-      {
-        index:'AdminSprwZzsh',
-        name:'资质审核',
-        icon:'check-square'
-      },{
-        index:'AdminSprwYccl',
-        name:'异常处理',
-        icon:'close-square'
-      },{
-        index:'AdminSprwCztx',
-        name:'充值提现',
-        icon:'plus-square'
-      }
-    ]
-  },{
+  },
+  // {
+  //   name:'审批任务',
+  //   icon:'issues-close',
+  //   item:[
+  //     {
+  //       index:'AdminSprwZzsh',
+  //       name:'资质审核',
+  //       icon:'check-square'
+  //     },{
+  //       index:'AdminSprwYccl',
+  //       name:'异常处理',
+  //       icon:'close-square'
+  //     },{
+  //       index:'AdminSprwCztx',
+  //       name:'充值提现',
+  //       icon:'plus-square'
+  //     }
+  //   ]
+  // },
+  {
     name:'已办任务',
     icon:'check-circle',
     item:[

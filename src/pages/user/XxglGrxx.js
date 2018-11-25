@@ -2,7 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import {test_url} from '../../util/Request';
-import { Skeleton, Switch, Card, Icon, Avatar } from 'antd';
+import { Card, Avatar } from 'antd';
 
 const { Meta } = Card;
 
@@ -10,7 +10,7 @@ class UserXxglGrxx extends React.Component {
   constructor(props) {
     super(props);
     this.state = { loading: true, state_: '0', email: 'test', des: 'test' };
-    this.componentDidMount = this.componentDidMount.bind(this);
+    // this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   onChange = (checked) => {
@@ -19,8 +19,8 @@ class UserXxglGrxx extends React.Component {
 
   componentDidMount() {
     axios.get(test_url + 'User/' + 'user1@email.com')
-      .then(function(response){
-        if (response.status == 200) {
+      .then(function(response) {
+        if (response.status === 200) {
           this.setState({state_: response.data.state + ""});
           this.setState({email: response.data.email});
           this.setState({accountBalance: response.data.accountBalance});

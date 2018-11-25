@@ -5,13 +5,14 @@ import MyHeader from './components/Header'
 import MyFooter from './components/Footer'
 import MyBreadcrumb from './components/Breadcrumb';
 import MyBody from './demo'
-import { Layout  } from 'antd';
+import { Layout } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
 
 class MyLayout extends React.Component {
   constructor(props){
     super(props);
-    this.state={
+    this.state= {
+      userName:props.location.state.userName,
       userType:props.location.state.userType,
       userPart:''
     }
@@ -31,7 +32,7 @@ class MyLayout extends React.Component {
           <Content >
             <MyBreadcrumb userType={this.state.userType} userPart={this.state.userPart}/>
             <div style={{ display: 'flex', flexDirection: 'row', flexWrap:'wrap',justifyContent:'space-between', margin: '0px 50px 0px 100px' }}>
-              <MyBody userType={this.state.userType} userPart={this.state.userPart}/>
+              <MyBody userName={this.state.userName} userType={this.state.userType} userPart={this.state.userPart}/>
             </div>
           </Content>
           <Footer><MyFooter /></Footer>
