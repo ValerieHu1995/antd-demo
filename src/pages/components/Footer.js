@@ -3,7 +3,7 @@ class MyFooter extends React.Component {
   render() {
     return (
         <div style={{ textAlign: 'center' }}>
-            Ant Design ©2018 Created by Ant UED
+            Bit Education ©2018 Created by ZJU
         </div>
     );
   }

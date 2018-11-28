@@ -184,14 +184,16 @@ class MyMenu extends React.Component {
           stuffItem[i].push(<Menu.Item key={MyMenuItemShangjia[i].item[j].index} onClick={this.goto.bind(this)}><Icon type={MyMenuItemShangjia[i].item[j].icon} />{MyMenuItemShangjia[i].item[j].name}</Menu.Item>);
         }
       }
+
     }
     else if(this.state.userType==='user'){
       s.push(<Menu
-        style={{ position: 'fixed', height: '100%', width: 250 }}
+        style={{ position: 'fixed', height: '100%', width: 250,backgroundColor:'#133150',color:'#ffffff' }}
         defaultOpenKeys={[MyMenuItemUser[0].name.toString()]}
         defaultSelectedKeys={[MyMenuItemUser[0].item[0].index.toString()]}
         mode={this.state.mode}
         theme={this.state.theme}>{stuff}</Menu>);
+        stuff.push(<div style={{height:60,background:"#333333",padding:40,fontStyle:'italic',fontSize:30}}><span>Bit Education</span></div>);
       for(var i=0;i<MyMenuItemUser.length;i++){
         stuffItem[i]=[];
         stuff.push(<SubMenu key={MyMenuItemUser[i].name} title={<span><Icon type={MyMenuItemUser[i].icon}/><span>{MyMenuItemUser[i].name}</span></span>}>{stuffItem[i]}</SubMenu>);
@@ -199,6 +201,7 @@ class MyMenu extends React.Component {
           stuffItem[i].push(<Menu.Item key={MyMenuItemUser[i].item[j].index} onClick={this.goto.bind(this)}><Icon type={MyMenuItemUser[i].item[j].icon} />{MyMenuItemUser[i].item[j].name}</Menu.Item>);
         }
       }
+
     }
     else{
       s.push(<Menu
