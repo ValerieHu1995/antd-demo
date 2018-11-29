@@ -26,16 +26,17 @@ class MyLayout extends React.Component {
     return (
       <div>
         <Layout>
-        <Sider><MyMenu userType={this.state.userType} onGoto={this.goto.bind(this)}/></Sider>
+        <Sider ><MyMenu userType={this.state.userType} onGoto={this.goto.bind(this)}/></Sider>
         <Layout>
           <Header><MyHeader /></Header>
-          <Content >
+          <Content style={ {backgroundColor:'#ffffff',height:650,border:2}}>
             <MyBreadcrumb userType={this.state.userType} userPart={this.state.userPart}/>
             <div style={{ display: 'flex', flexDirection: 'row', flexWrap:'wrap',justifyContent:'space-between', margin: '0px 50px 0px 100px' }}>
               <MyBody userName={this.state.userName} userType={this.state.userType} userPart={this.state.userPart}/>
             </div>
+
           </Content>
-          <Footer><MyFooter /></Footer>
+          <Footer style={{backgroundColor:'#ffffff'}}><MyFooter  /></Footer>
         </Layout>
       </Layout>
       </div>

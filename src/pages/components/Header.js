@@ -19,16 +19,24 @@ class MyHeader extends React.Component {
     render() {
         return (
             <div>
+
                 <Menu
                     theme="light"
                     mode="horizontal"
                     defaultSelectedKeys={['2']}
-                    style={{ position: 'fixed', width: '100%', zIndex: '1000', lineHeight: '64px' }}
+                    style={{  position: 'fixed', width: '100%', zIndex: '1000', lineHeight: '64px' }}
                 >
-                    <Dropdown overlay={menu} placement="bottomCenter">
-                        <Button shape='circle-outline' size='default' icon='user'></Button>
+
+                    <Dropdown overlay={menu} placement="bottomCenter" >
+                        <Button style={{marginLeft:700}} shape='circle-outline' size='default' icon='user' ></Button>
+
                     </Dropdown> 
+
+                    <img src={require("../../assets/logo.jpg")} style={{width:40,marginLeft:30}}></img>
+
+
                 </Menu>
+
             </div>
         );
     }
