@@ -6,63 +6,65 @@ import axios from 'axios';
 
 const FormItem = Form.Item;
 
-class LoginForm extends React.Component {
+
+const openNotificationWithIcon = (type) => {
+    if(type == "success"){
+        notification[type]({
+        duration: 3,
+        message: '注册成功',
+        description: '跳转到登录页面...',
+        });
+    }
+    else if(type == "warning"){
+        notification[type]({
+            duration: 3,
+            message: '注册失败',
+            description: '请重新注册',
+        }); 
+    }
+
+ };
+
+class RegisterForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        let login_url = ""
+        let register_url = ""
         let params = {}
         if(values.userType=="user"){
-          login_url = 'http://123.207.227.186:8080/login/user'
+            register_url = 'http://123.207.227.186:8080/user'
+            params.nickname = values.userName.split("@")[0]
         }
         else if(values.userType=="shangjia"){
-          login_url = 'http://123.207.227.186:8080/login/company'
-        }
-        else if(values.userType=="admin"){
-          login_url = 'http://123.207.227.186:8080/login/admin'
+            register_url = 'http://123.207.227.186:8080/company'
+            params.companyName = values.userName.split("@")[0]
         }
         params.email = values.userName
         params.password = values.password
-        axios.post(login_url, params).then(response => {
+        params.balance = 0
+        params.telphone = "1234567890"
+        axios.post(register_url, params).then(response => {
           if(response.data.flag){
             if(response.data.code == 100000){
-            notification['success']({
-              duration: 1,
-              message: '登录成功',
-              description: '',
-            });
-            this.props.history.push({ pathname: '/main', state: { userName: values.userName, userType:values.userType } });
+            this.props.history.push({ pathname: '/'});
+            openNotificationWithIcon('success')
             }
-            else{
-              notification['warning']({
-                duration: 2,
-                message: '登录失败',
-                description: '请输入正确的账号密码',
-              });
-            }
+            else openNotificationWithIcon('warning')
           }
-          else{
-            notification['warning']({
-              duration: 2,
-              message: '登录失败',
-              description: '请输入正确的账号密码',
-            });
-
-          }
+          else openNotificationWithIcon('warning')
         }).catch(exception => console.log(exception))
-
 
       }
     });
   }
-  handleRegister(){
+  backLogin(){
     notification['success']({
-      duration: 3,
-      message: '注册页面',
-      description: '',
+        duration: 3,
+        message: '登录页面',
+        description: '',
     });
-    this.props.history.push({ pathname: '/register'});
+    this.props.history.push({ pathname: '/'});
   }
 
   // handleSubmit = (e) => {
@@ -102,7 +104,6 @@ class LoginForm extends React.Component {
             <Radio.Group buttonStyle="solid">
               <Radio.Button value="user">用户</Radio.Button>
               <Radio.Button value="shangjia">商家</Radio.Button>
-              <Radio.Button value="admin">管理员</Radio.Button>
             </Radio.Group>
           )}
         </FormItem>
@@ -115,8 +116,8 @@ class LoginForm extends React.Component {
           )}
 
           <br></br>
-          <Button style={{marginRight: 50}} type="primary" htmlType="submit" className="login-form-button"  >登录</Button>
-          <Button type="default"  className="login-form-button" onClick={this.handleRegister.bind(this)}>注册</Button>
+          <Button style={{marginRight: 30}} type="primary" htmlType="submit" className="login-form-button" >注册</Button>
+          <Button type="default"  className="login-form-button" onClick={this.backLogin.bind(this)}>回去登录</Button>
           <br></br>
         </FormItem>
       </Form>
@@ -127,6 +128,9 @@ class LoginForm extends React.Component {
 
 
 
-const MyLogin = Form.create()(LoginForm);
+const MyRegister = Form.create()(RegisterForm);
 
-export default withRouter(MyLogin);
+export default withRouter(MyRegister);
+
+
+

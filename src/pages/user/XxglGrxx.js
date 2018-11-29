@@ -1,7 +1,7 @@
 //【信息管理-个人信息】页面
 import React from 'react';
 import axios from 'axios';
-import {test_url} from '../../util/Request';
+import {backend_url} from '../../util/Request';
 import { Card, Avatar } from 'antd';
 
 const { Meta } = Card;
@@ -18,13 +18,18 @@ class UserXxglGrxx extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(test_url + 'User/' + 'user1@email.com')
+    
+    axios.get(backend_url + 'user/' + this.props.userName, {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
       .then(function(response) {
+        console.log(response.body)
         if (response.status === 200) {
           this.setState({state_: response.data.state + ""});
           this.setState({email: response.data.email});
           this.setState({accountBalance: response.data.accountBalance});
-
           this.onChange(this.state);
         }
       }.bind(this))
