@@ -72,7 +72,7 @@ class InnerTransferForm extends React.Component {
          </FormItem>
 
           <FormItem {...buttonItemLayout}>
-            <Button type="primary" htmlType="submit">充值</Button>
+            <Button type="primary" htmlType="submit">转账</Button>
           </FormItem>
 
         </Form>
