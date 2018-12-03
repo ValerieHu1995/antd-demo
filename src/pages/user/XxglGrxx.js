@@ -19,11 +19,8 @@ class UserXxglGrxx extends React.Component {
 
   componentDidMount() {
     
-    axios.get(backend_url + 'user/' + this.props.userName, {
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      }
-    })
+    axios.get(backend_url + 'user/info' + this.props.userName
+    )
       .then(function(response) {
         console.log(response.body)
         if (response.status === 200) {
