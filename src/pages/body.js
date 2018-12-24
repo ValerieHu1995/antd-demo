@@ -18,6 +18,7 @@ import ShangjiaKcxxFbkc from './shangjia/KcxxFbkc';
 import ShangjiaKcxxCkkc from './shangjia/KcxxCkkc';
 //user
 import UserXxglGrxx from './user/XxglGrxx';
+import UserXxglXgxx from './user/XxglXgxx';
 import UserKcxxFbkc from './user/KcxxFbkc';
 import UserKcxxCkkc from './user/KcxxCkkc';
 import UserQbglCz from './user/QbglCz';
@@ -56,6 +57,7 @@ class MyBody extends React.Component {
         if(this.props.userPart==='ShangjiaKcxxCkkc'){part.push(<ShangjiaKcxxCkkc userName={this.state.userName}/>);}
         //user
         if(this.props.userPart==='UserXxglGrxx'){part.push(<UserXxglGrxx userName={this.state.userName}/>);}
+        if(this.props.userPart==='UserXxglXgxx'){part.push(<UserXxglXgxx userName={this.state.userName}/>);}
         if(this.props.userPart==='UserKcxxFbkc'){part.push(<UserKcxxFbkc userName={this.state.userName}/>);}
         if(this.props.userPart==='UserKcxxCkkc'){part.push(<UserKcxxCkkc userName={this.state.userName}/>);}
         if(this.props.userPart==='UserQbglCz'){part.push(<UserQbglCz userName={this.state.userName}/>);}

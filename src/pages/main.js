@@ -4,11 +4,11 @@ import MyMenu from './components/Menu';
 import MyHeader from './components/Header'
 import MyFooter from './components/Footer'
 import MyBreadcrumb from './components/Breadcrumb';
-import MyBody from './demo'
+import MyBody from './body'
 import { Layout } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
 
-class MyLayout extends React.Component {
+class Main extends React.Component {
   constructor(props){
     super(props);
     this.state= {
@@ -28,7 +28,7 @@ class MyLayout extends React.Component {
         <Layout>
         <Sider ><MyMenu userType={this.state.userType} onGoto={this.goto.bind(this)}/></Sider>
         <Layout>
-          <Header><MyHeader /></Header>
+          <Header><MyHeader userType={this.state.userType} email={this.state.userName}/></Header>
           <Content style={ {backgroundColor:'#ffffff',height:650,border:2}}>
             <MyBreadcrumb userType={this.state.userType} userPart={this.state.userPart}/>
             <div style={{ display: 'flex', flexDirection: 'row', flexWrap:'wrap',justifyContent:'space-between', margin: '0px 50px 0px 100px' }}>
@@ -43,4 +43,4 @@ class MyLayout extends React.Component {
     );
   }
 }
-export default MyLayout;
+export default Main;

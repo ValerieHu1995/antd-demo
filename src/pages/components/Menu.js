@@ -107,6 +107,11 @@ const MyMenuItemUser = [
         index:'UserXxglGrxx',
         name:'个人信息',
         icon:'idcard'
+      },
+      {
+        index:'UserXxglXgxx',
+        name:'修改信息',
+        icon:'idcard'
       }
     ]
   },{
