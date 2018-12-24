@@ -1,25 +1,45 @@
 import React from 'react';
-import { Menu, Avatar, Dropdown, Button } from 'antd';
+import { Menu, Avatar, Dropdown, Button, message, notification } from 'antd';
+import {userLogout} from '../../apis/api'
+import { withRouter } from 'react-router'; 
 
-const menu = (
-    <Menu>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">我要干嘛</a>
-      </Menu.Item>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">我要干嘛</a>
-      </Menu.Item>
-      <Menu.Item>
-        <a href="/">注销</a>
-      </Menu.Item>
-    </Menu>
-  );
+
+
+
 
 class MyHeader extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {userType:props.userType, email:props.email, visible: false};
+    }
+    
+    onClick = ({ key }) => {
+        if(key == 'logout'){
+            if(this.state.userType=='user'){
+                userLogout({
+                    "email": this.state.email
+                })
+                notification['success']({
+                    duration: 3,
+                    message: '登出成功',
+                    description: '',
+                  });
+                this.props.history.push({pathname: '/'});
+            }
+            
+        }
+      };
+      
+    menu = (
+    <Menu onClick={this.onClick}>
+        <Menu.Item key="logout">登出</Menu.Item>
+    </Menu>
+    );
+
     render() {
         return (
             <div>
-
+            
                 <Menu
                     theme="light"
                     mode="horizontal"
@@ -27,7 +47,7 @@ class MyHeader extends React.Component {
                     style={{  position: 'fixed', width: '100%', zIndex: '1000', lineHeight: '64px' }}
                 >
 
-                    <Dropdown overlay={menu} placement="bottomCenter" >
+                    <Dropdown overlay={this.menu} placement="bottomCenter" >
                         <Button style={{marginLeft:700}} shape='circle-outline' size='default' icon='user' ></Button>
 
                     </Dropdown> 
@@ -42,4 +62,4 @@ class MyHeader extends React.Component {
     }
 }
 
-export default MyHeader;
+export default withRouter(MyHeader);

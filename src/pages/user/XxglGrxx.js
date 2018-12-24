@@ -2,14 +2,15 @@
 import React from 'react';
 import axios from 'axios';
 import {backend_url} from '../../util/Request';
+import {requestUserGrxx} from '../../apis/api'
 import { Card, Avatar } from 'antd';
-
 const { Meta } = Card;
 
 class UserXxglGrxx extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loading: true, state_: '0', email: 'test', des: 'test' };
+
+    this.state = { loading: true, state_: '0', email: 'test', des: 'test', nickname:'',email:'', accountBalance:'' };
     // this.componentDidMount = this.componentDidMount.bind(this);
   }
 
@@ -18,18 +19,16 @@ class UserXxglGrxx extends React.Component {
   }
 
   componentDidMount() {
+    var params = {
+      "email" : this.props.userName
+    }
     
-    axios.get(backend_url + 'user/' + this.props.userName, {
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      }
-    })
+    requestUserGrxx(params)
       .then(function(response) {
-        console.log(response.body)
         if (response.status === 200) {
-          this.setState({state_: response.data.state + ""});
-          this.setState({email: response.data.email});
-          this.setState({accountBalance: response.data.accountBalance});
+          this.setState({nickname: response.data.data.nickname+""});
+          this.setState({email: response.data.data.email});
+          this.setState({accountBalance: response.data.data.balance+""});
           this.onChange(this.state);
         }
       }.bind(this))
@@ -43,8 +42,8 @@ class UserXxglGrxx extends React.Component {
           <Card style={{ width: 300, marginTop: 16 }} loading={loading}>
             <Meta
               avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-              title="State"
-              description={this.state.state_}
+              title="Nick Name"
+              description={this.state.nickname}
             />
           </Card>
 

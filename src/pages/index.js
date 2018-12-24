@@ -1,10 +1,27 @@
 //login界面
 import React from 'react';
-import { withRouter } from 'react-router';
 import { Form, Icon, Input, Button, Checkbox, Radio, notification } from 'antd';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const FormItem = Form.Item;
+
+const myaxios = axios.create({
+  baseURL: 'http://123.207.227.186:8080',
+  timeout: 5000,
+  withCredentials: true
+});
+
+const AppRouter = () => {
+  <Router>
+  <div>
+    <Route path="/" exact component={MyLogin} />
+    <Route path="/register" component={MyRegister} />
+    <Route path="/main" component={Main} />
+  </div>
+</Router>
+}
+
 
 class LoginForm extends React.Component {
   handleSubmit = (e) => {
@@ -24,7 +41,7 @@ class LoginForm extends React.Component {
         }
         params.email = values.userName
         params.password = values.password
-        axios.post(login_url, params).then(response => {
+        myaxios.post(login_url, params).then(response => {
           if(response.data.flag){
             if(response.data.code == 100000){
             notification['success']({
@@ -129,4 +146,4 @@ class LoginForm extends React.Component {
 
 const MyLogin = Form.create()(LoginForm);
 
-export default withRouter(MyLogin);
+export default MyLogin;
